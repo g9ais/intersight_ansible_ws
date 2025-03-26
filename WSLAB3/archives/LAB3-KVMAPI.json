@@ -1,0 +1,51 @@
+{
+    "AccountMoid": "59a80bbbf11aa10001cf7413",
+    "Ancestors": [],
+    "ClassId": "kvm.Policy",
+    "CreateTime": "2025-01-23T09:52:44.556Z",
+    "Description": "kvm policy",
+    "DomainGroupMoid": "5b25418b7a7662743465cf1f",
+    "EnableLocalServerVideo": true,
+    "EnableVideoEncryption": true,
+    "Enabled": true,
+    "MaximumSessions": 3,
+    "ModTime": "2025-02-05T10:54:31.208Z",
+    "Moid": "6792116c627572300176a92d",
+    "Name": "tf-bootcamp-kvm.def",
+    "ObjectType": "kvm.Policy",
+    "Organization": {
+      "ClassId": "mo.MoRef",
+      "Moid": "65e21ad56972653301b39354",
+      "ObjectType": "organization.Organization",
+      "link": "https://us-east-1.intersight.com/api/v1/organization/Organizations/65e21ad56972653301b39354"
+    },
+    "Owners": [
+      "59a80bbbf11aa10001cf7413"
+    ],
+    "PermissionResources": [
+      {
+        "ClassId": "mo.MoRef",
+        "Moid": "65e21ad56972653301b39354",
+        "ObjectType": "organization.Organization",
+        "link": "https://us-east-1.intersight.com/api/v1/organization/Organizations/65e21ad56972653301b39354"
+      }
+    ],
+    "Profiles": [
+      {
+        "ClassId": "mo.MoRef",
+        "Moid": "6792116e77696e30015133e9",
+        "ObjectType": "server.Profile",
+        "link": "https://us-east-1.intersight.com/api/v1/server/Profiles/6792116e77696e30015133e9"
+      },
+      {
+        "ClassId": "mo.MoRef",
+        "Moid": "6792116e77696e3001513407",
+        "ObjectType": "server.Profile",
+        "link": "https://us-east-1.intersight.com/api/v1/server/Profiles/6792116e77696e3001513407"
+      }
+    ],
+    "RemotePort": 2069,
+    "SharedScope": "",
+    "Tags": [],
+    "TunneledKvmEnabled": true
+  }

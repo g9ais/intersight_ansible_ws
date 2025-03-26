@@ -1,0 +1,9 @@
+---
+- name: Setup Cisco Intersight
+  # hosts: localhost
+  hosts: blades
+  connection: local
+  gather_facts: false
+  vars_files:
+  roles:
+    - role: cisco_update_inventory

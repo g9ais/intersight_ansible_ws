@@ -1,0 +1,36 @@
+---
+all:
+  hosts:
+  # no host in main group
+  children:
+    servertemplate_esx:
+      hosts:
+        dummy:
+    serverprofile_esx:
+      hosts:
+      #add hosts representing service profiles
+        #esxhost1:
+        #<add more>
+      vars:
+        #Check SP Template Name generated on LAB04
+        SPTemplate: <name of server profile template of lab04>
+
+  vars:
+    api_private_key: ../bootcamp_org_pvk.pem
+    api_key_id: "{{ lookup('file', '../bootcamp_org_apikey.id') }}"
+    api_uri: https://intersight.com/api/v1
+    #vars below just because modules use them...
+    intersight_api_private_key: "{{ api_private_key }}"
+    intersight_api_key_id: "{{ api_key_id }}"
+    # 
+    # Intersight Organization Name. Please make sure it already exists.
+    organization_name: BootCamp
+    organization_description: "Org for remote clients tests (typically non-Cisco)"
+    org_name: "{{ organization_name }}"
+    #do not forget to add your group prefix
+    group_prefix: <your group>
+
+
+
+
+    

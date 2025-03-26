@@ -1,0 +1,9 @@
+---
+- name: Setup Cisco UCS servers
+  # hosts: localhost
+  hosts: servertemplate_esx
+  connection: local
+  gather_facts: false
+  vars_files:
+  roles:
+    - role: cisco_ucs_imm

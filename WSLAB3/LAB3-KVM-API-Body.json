@@ -1,0 +1,20 @@
+{
+  "ClassId": "kvm.Policy",
+  "Description": "kvm policy",
+  "EnableLocalServerVideo": true,
+  "EnableVideoEncryption": true,
+  "Enabled": true,
+  "MaximumSessions": 3,
+  "Name": "bootcamp-kvm.def",
+  "ObjectType": "kvm.Policy",
+  "Organization": {
+    "Moid": "65e21ad56972653301b39354"
+  },
+  "Profiles": [],
+  "RemotePort": 2069,
+  "Tags": [            
+    {"Key": "Provisioned by:", "Value": "Intersight-Ansible"},
+    {"Key": "Project:", "Value": "Workshop-g00"}
+  ],
+  "TunneledKvmEnabled": true
+} 

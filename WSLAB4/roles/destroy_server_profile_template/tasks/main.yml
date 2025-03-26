@@ -1,0 +1,7 @@
+---
+- name: Delete Service Profile Template
+  ansible.builtin.include_tasks: destroy_server_profile_template.yml
+- name: Delete Policies
+  ansible.builtin.include_tasks: destroy_policy.yml
+- name: Delete Pools
+  ansible.builtin.include_tasks: destroy_pool.yml

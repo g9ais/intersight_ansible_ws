@@ -1,0 +1,5 @@
+---
+# Configuration Role for  Intersight functions
+#
+- name: Update server inventory
+  ansible.builtin.include_tasks: intersight_update_inventory.yml

@@ -1,0 +1,17 @@
+---
+
+- name: "Delete Server Profile Template for FC Boot from SAN"
+  vars:
+        api_info: &api_info_assign_fc
+          api_private_key: "{{ intersight_api_private_key }}"
+          api_key_id: "{{ intersight_api_key_id }}"
+          api_uri: "{{ api_uri | default(omit) }}"
+          validate_certs: "{{ validates_certs | default(omit) }}"
+          state: "absent"
+
+  cisco.intersight.intersight_rest_api:
+          <<: *api_info_assign_fc
+          resource_path: /server/ProfileTemplates
+          query_params:
+            $filter: "Name eq '{{ name_of_fc_SPT }}'"
+  

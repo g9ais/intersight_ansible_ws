@@ -1,0 +1,30 @@
+cisco.intersight.intersight_rest_api:
+  <<: *api_info_assign_fc
+  resource_path: /server/ProfileTemplates
+  query_params:
+    $filter: "Name eq '{{ name_of_fc_SPT }}'"
+  api_body: {
+      "Action": "No-op",
+      "Name": "{{ name_of_fc_SPT }}",
+      "Description": "{{ description_of_fc_SPT }}",
+      ClassId: "server.ProfileTemplate",
+      "PolicyBucket": [
+        {
+          "Moid": "{{ bios_policy_details.api_response.Moid }}",
+          "ObjectType": "bios.Policy"
+        },
+        # ADD ANY NEEDED POLICIES HERE
+        {
+          "Moid": "{{ vmedia_policy_details.api_response.Moid }}",
+          "ObjectType": "vmedia.Policy"
+        }
+      ],
+      "TargetPlatform": "FIAttached",
+      "Organization": {
+        "Moid": "{{ intersight_org.api_response.Moid }}"
+      },
+      UuidAddressType: "POOL",
+      UuidPool: {
+        "Moid": "{{ uuid_pool_details.api_response.Moid }}"
+      }
+    }

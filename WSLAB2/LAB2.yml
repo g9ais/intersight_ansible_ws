@@ -1,0 +1,21 @@
+---
+- name: LAB2 Create NTP Policy
+  hosts: localhost
+  gather_facts: false
+  tasks:
+    - name: Configure NTP Policy
+      cisco.intersight.intersight_ntp_policy:
+        api_private_key: "{{ api_private_key }}"
+        api_key_id: "{{ api_key_id }}"
+        api_uri: "{{ api_uri }}"
+        organization: "{{org_name}}"
+        name: g00-ntp.policy
+        description: NTP policy for lab use-modified
+        tags:
+          - Key: Site
+            Value: RCDN
+        ntp_servers:
+          - ntp.esl.cisco.com
+          - ch.pool.ntp.org
+        timezone: Europe/Zurich
+        state: present  #toggle to create or delete

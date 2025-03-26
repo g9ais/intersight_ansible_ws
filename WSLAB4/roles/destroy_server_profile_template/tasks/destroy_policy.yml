@@ -1,0 +1,396 @@
+---
+# Gather various policy details which will be used to map policies to Server Profile Templates
+#
+
+
+- name: "Delete BIOS Policy Details"
+  vars:
+    api_info: &api_info_bios_policy
+      api_private_key: "{{ intersight_api_private_key }}"
+      api_key_id: "{{ intersight_api_key_id }}"
+      api_uri: "{{ api_uri | default(omit) }}"
+      validate_certs: "{{ validate_certs | default(omit) }}"
+      state: "{{ state | default(omit) }}"
+
+  cisco.intersight.intersight_rest_api:
+    <<: *api_info_bios_policy
+    resource_path: /bios/Policies
+    query_params:
+      $filter: "Name eq '{{ name_of_m7_bios_policy }}'"
+  # register:  bios_policy_details
+
+- name: "Delete Intel M6 Virtualization BIOS Policy"
+  cisco.intersight.intersight_rest_api:
+    <<: *api_info_bios_policy
+    resource_path: /bios/Policies
+    query_params:
+      $filter: "Name eq '{{ name_of_m6_bios_policy }}'"
+
+- name: "Delete FC Boot Order Policy Details"
+  vars:
+    api_info: &api_info_fc_boot_policy
+      api_private_key: "{{ intersight_api_private_key }}"
+      api_key_id: "{{ intersight_api_key_id }}"
+      api_uri: "{{ api_uri | default(omit) }}"
+      validate_certs: "{{ validate_certs | default(omit) }}"
+      state: "{{ state | default(omit) }}"
+
+  cisco.intersight.intersight_rest_api:
+    <<: *api_info_fc_boot_policy
+    resource_path: /boot/PrecisionPolicies
+    query_params:
+      $filter: "Name eq '{{ fc_boot_order_policy_name }}'"
+
+  # register:  fc_boot_order_policy_details
+  when: configure_fc == 'true'
+
+- name: "Delete iSCSI Boot Order Policy Details"
+  vars:
+    api_info: &api_info_iscsi_boot_policy
+      api_private_key: "{{ intersight_api_private_key }}"
+      api_key_id: "{{ intersight_api_key_id }}"
+      api_uri: "{{ api_uri | default(omit) }}"
+      validate_certs: "{{ validate_certs | default(omit) }}"
+      state: "{{ state | default(omit) }}"
+
+  cisco.intersight.intersight_rest_api:
+    <<: *api_info_iscsi_boot_policy
+    resource_path: /boot/PrecisionPolicies
+    query_params:
+      $filter: "Name eq '{{ iscsi_boot_order_policy_name }}'"
+  # register:  iscsi_boot_order_policy_details
+  when: configure_iscsi == 'true' 
+
+- name: "Delete IMC Access Policy Details"
+  vars:
+    api_info: &api_info_imc_access
+      api_private_key: "{{ intersight_api_private_key }}"
+      api_key_id: "{{ intersight_api_key_id }}"
+      api_uri: "{{ api_uri | default(omit) }}"
+      validate_certs: "{{ validate_certs | default(omit) }}"
+      state: "{{ state | default(omit) }}"
+
+  cisco.intersight.intersight_rest_api:
+    <<: *api_info_imc_access
+    resource_path: /access/Policies
+    query_params:
+      $filter: "Name eq '{{ name_of_imc_access_policy }}'"
+
+  # register:  imc_access_policy_details
+
+- name: "Delete IPMI over LAN Policy Details"
+  vars:
+    api_info: &api_info_ipmi
+      api_private_key: "{{ intersight_api_private_key }}"
+      api_key_id: "{{ intersight_api_key_id }}"
+      api_uri: "{{ api_uri | default(omit) }}"
+      validate_certs: "{{ validate_certs | default(omit) }}"
+      state: "{{ state | default(omit) }}"
+
+  cisco.intersight.intersight_rest_api:
+    <<: *api_info_ipmi
+    resource_path: /ipmioverlan/Policies
+    query_params:
+      $filter: "Name eq '{{ name_of_ipmi_policy }}'"
+
+  # register:  ipmi_policy_details
+
+- name: "Delete Local User Policy Details"
+  vars:
+    api_info: &api_info_local_user
+      api_private_key: "{{ intersight_api_private_key }}"
+      api_key_id: "{{ intersight_api_key_id }}"
+      api_uri: "{{ api_uri | default(omit) }}"
+      validate_certs: "{{ validate_certs | default(omit) }}"
+      state: "{{ state | default(omit) }}"
+
+  cisco.intersight.intersight_rest_api:
+    <<: *api_info_local_user
+    resource_path: /iam/EndPointUserPolicies
+    query_params:
+      $filter: "Name eq '{{ name_of_local_user_policy }}'"
+
+  # register:  local_user_policy_details
+
+- name: "Delete KVM Policy Details"
+  vars:
+    api_info: &api_info_kvm
+      api_private_key: "{{ intersight_api_private_key }}"
+      api_key_id: "{{ intersight_api_key_id }}"
+      api_uri: "{{ api_uri | default(omit) }}"
+      validate_certs: "{{ validate_certs | default(omit) }}"
+      state: "{{ state | default(omit) }}"
+
+  cisco.intersight.intersight_rest_api:
+    <<: *api_info_kvm
+    resource_path: /kvm/Policies
+    query_params:
+      $filter: "Name eq '{{ name_of_kvm_policy }}'"
+
+  # register:  kvm_policy_details
+
+- name: "Delete Virtual Media Policy Details"
+  vars:
+    api_info: &api_info_vmedia
+      api_private_key: "{{ intersight_api_private_key }}"
+      api_key_id: "{{ intersight_api_key_id }}"
+      api_uri: "{{ api_uri | default(omit) }}"
+      validate_certs: "{{ validate_certs | default(omit) }}"
+      state: "{{ state | default(omit) }}"
+
+  cisco.intersight.intersight_rest_api:
+    <<: *api_info_vmedia
+    resource_path: /vmedia/Policies
+    query_params:
+      $filter: "Name eq '{{ name_of_vmedia_policy }}'"
+
+  # register:  vmedia_policy_details
+
+- name: "Delete FC LAN Connectivity Policy Details"
+  vars:
+    api_info: &api_info_fc_lan_connectivity
+      api_private_key: "{{ intersight_api_private_key }}"
+      api_key_id: "{{ intersight_api_key_id }}"
+      api_uri: "{{ api_uri | default(omit) }}"
+      validate_certs: "{{ validate_certs | default(omit) }}"
+      state: "{{ state | default(omit) }}"
+
+  cisco.intersight.intersight_rest_api:
+    <<: *api_info_fc_lan_connectivity
+    resource_path: /vnic/LanConnectivityPolicies
+    query_params:
+      $filter: "Name eq '{{ name_of_fc_lan_connectivity_policy }}'"
+
+  # register:  fc_lan_connectivity_policy_details
+  when: configure_fc == 'true' 
+
+- name: "Delete iSCSI LAN Connectivity Policy Details"
+  vars:
+    api_info: &api_info_iscsi_lan_connectivity
+      api_private_key: "{{ intersight_api_private_key }}"
+      api_key_id: "{{ intersight_api_key_id }}"
+      api_uri: "{{ api_uri | default(omit) }}"
+      validate_certs: "{{ validate_certs | default(omit) }}"
+      state: "{{ state | default(omit) }}"
+
+  cisco.intersight.intersight_rest_api:
+    <<: *api_info_iscsi_lan_connectivity
+    resource_path: /vnic/LanConnectivityPolicies
+    query_params:
+      $filter: "Name eq '{{ name_of_iscsi_lan_connectivity_policy }}'"
+  # register:  iscsi_lan_connectivity_policy_details
+  when: configure_iscsi == 'true' 
+
+- name: "Delete SAN Connectivity Policy Details"
+  vars:
+    api_info: &api_info_san_connectivity
+      api_private_key: "{{ intersight_api_private_key }}"
+      api_key_id: "{{ intersight_api_key_id }}"
+      api_uri: "{{ api_uri | default(omit) }}"
+      validate_certs: "{{ validate_certs | default(omit) }}"
+      state: "{{ state | default(omit) }}"
+
+  cisco.intersight.intersight_rest_api:
+    <<: *api_info_san_connectivity
+    resource_path: /vnic/SanConnectivityPolicies
+    query_params:
+      $filter: "Name eq '{{ name_of_san_connectivity_policy }}'"
+
+  # register:  san_connectivity_policy_details
+  when: configure_fc == 'true'
+
+- name: "Delete Chassis Power Policy"
+  vars:
+    api_info: &api_info
+      api_private_key: "{{ intersight_api_private_key }}"
+      api_key_id: "{{ intersight_api_key_id }}"
+      api_uri: "{{ api_uri | default(omit) }}"
+      validate_certs: "{{ validate_certs | default(omit) }}"
+      state: "{{ state | default(omit) }}"
+
+  cisco.intersight.intersight_rest_api:
+    <<: *api_info
+    resource_path: /power/Policies
+    query_params:
+      $filter: "Name eq '{{ name_of_chassis_power_policy }}'"
+
+- name: "Delete Chassis Thermal Policy"
+  cisco.intersight.intersight_rest_api:
+    <<: *api_info
+    resource_path: /thermal/Policies
+    query_params:
+       $filter: "Name eq '{{ name_of_chassis_thermal_policy }}'"
+
+
+- name: "Delete Ethernet Adapter Policies"
+  block:
+  - name: "Delete Ethernet Adapter VMware Policy"
+    cisco.intersight.intersight_rest_api:
+      <<: *api_info
+      resource_path: /vnic/EthAdapterPolicies
+      query_params:
+        $filter: "Name eq '{{ name_of_ethernet_adapter_vmware_policy }}'"
+
+  - name: "Delete Ethernet Adapter VMware High Traffic Policy"
+    cisco.intersight.intersight_rest_api:
+      <<: *api_info
+      resource_path: /vnic/EthAdapterPolicies
+      query_params:
+        $filter: "Name eq '{{ name_of_ethernet_adapter_hightrf_policy }}'"
+      
+
+  - name: "Delete Ethernet Adapter VMware 16 Rx Qs - 4th Gen VIC Policy"
+    cisco.intersight.intersight_rest_api:
+      <<: *api_info
+      resource_path: /vnic/EthAdapterPolicies
+      query_params:
+        $filter: "Name eq '{{ name_of_ethernet_adapter_16rxq_policy }}'"
+    when: vic_type == "4G"
+
+  - name: "Delete Ethernet Adapter VMware 16 Rx Qs - 5th Gen VIC Policy"
+    cisco.intersight.intersight_rest_api:
+      <<: *api_info
+      resource_path: /vnic/EthAdapterPolicies
+      query_params:
+        $filter: "Name eq '{{ name_of_ethernet_adapter_16rxq_policy }}'"
+    when: vic_type == "5G"
+
+- name: "Delete Ethernet Network Control Policy"
+  cisco.intersight.intersight_rest_api:
+    <<: *api_info
+    resource_path: /fabric/EthNetworkControlPolicies
+    query_params:
+      $filter: "Name eq '{{ name_of_ethernet_network_control_policy }}'"
+
+
+
+- name: "Delete Ethernet Network Group Policy for Mgmt and NFS Access"
+  vars:
+    api_info: &api_info_mgmt
+      api_private_key: "{{ intersight_api_private_key }}"
+      api_key_id: "{{ intersight_api_key_id }}"
+      api_uri: "{{ api_uri | default(omit) }}"
+      validate_certs: "{{ validate_certs | default(omit) }}"
+      state: "{{ state | default(omit) }}"
+
+  cisco.intersight.intersight_rest_api:
+    <<: *api_info_mgmt
+    resource_path: /fabric/EthNetworkGroupPolicies
+    query_params:
+       $filter: "Name eq '{{ name_of_network_group_policy_for_management }}'"
+
+
+- name: "Delete Ethernet Network Group Policy for vDS"
+  vars:
+    api_info: &api_info_vmotion
+      api_private_key: "{{ intersight_api_private_key }}"
+      api_key_id: "{{ intersight_api_key_id }}"
+      api_uri: "{{ api_uri | default(omit) }}"
+      validate_certs: "{{ validate_certs | default(omit) }}"
+      state: "{{ state | default(omit) }}"
+
+  cisco.intersight.intersight_rest_api:
+    <<: *api_info_vmotion
+    resource_path: /fabric/EthNetworkGroupPolicies
+    query_params:
+       $filter: "Name eq '{{ name_of_network_group_policy_for_vds }}'"
+
+
+- name: "Delete Ethernet Network Group Policy for iSCSI-A"
+  vars:
+    api_info: &api_info_iscsi_a
+      api_private_key: "{{ intersight_api_private_key }}"
+      api_key_id: "{{ intersight_api_key_id }}"
+      api_uri: "{{ api_uri | default(omit) }}"
+      validate_certs: "{{ validate_certs | default(omit) }}"
+      state: "{{ state | default(omit) }}"
+
+  cisco.intersight.intersight_rest_api:
+    <<: *api_info_iscsi_a
+    resource_path: /fabric/EthNetworkGroupPolicies
+    query_params:
+       $filter: "Name eq '{{ name_of_network_group_policy_for_iscsi_a }}'"
+  when: configure_iscsi == 'true'
+
+
+- name: "Delete Ethernet Network Group Policy for iSCSI-B"
+  vars:
+    api_info: &api_info_iscsi_b
+      api_private_key: "{{ intersight_api_private_key }}"
+      api_key_id: "{{ intersight_api_key_id }}"
+      api_uri: "{{ api_uri | default(omit) }}"
+      validate_certs: "{{ validate_certs | default(omit) }}"
+      state: "{{ state | default(omit) }}"
+
+  cisco.intersight.intersight_rest_api:
+    <<: *api_info_iscsi_b
+    resource_path: /fabric/EthNetworkGroupPolicies
+    query_params:
+       $filter: "Name eq '{{ name_of_network_group_policy_for_iscsi_b }}'"
+  when: configure_iscsi == 'true'
+
+- name: "Delete Ethernet QoS Policy"
+  cisco.intersight.intersight_rest_api:
+    <<: *api_info
+    resource_path: /vnic/EthQosPolicies
+    query_params:
+       $filter: "Name eq '{{ name_of_ethernet_qos_policy }}'"
+
+- name: "Delete Fibre Channel Adapter Policy"
+  cisco.intersight.intersight_rest_api:
+      <<: *api_info
+      resource_path: /vnic/FcAdapterPolicies
+      query_params:
+         $filter: "Name eq '{{ name_of_fc_adapter_policy }}'"
+
+
+- name: "Delete Fibre Channel Network Policy for SAN-A"
+  vars:
+    api_info: &api_info_san-a
+      api_private_key: "{{ intersight_api_private_key }}"
+      api_key_id: "{{ intersight_api_key_id }}"
+      api_uri: "{{ api_uri | default(omit) }}"
+      validate_certs: "{{ validate_certs | default(omit) }}"
+      state: "{{ state | default(omit) }}"
+
+  cisco.intersight.intersight_rest_api:
+      <<: *api_info_san-a
+      resource_path: /vnic/FcNetworkPolicies
+      query_params:
+         $filter: "Name eq '{{ name_of_fc_network_policy_san_a }}'"
+
+
+- name: "Delete Fibre Channel Network Policy for SAN-B"
+  vars:
+    api_info: &api_info_san-b
+      api_private_key: "{{ intersight_api_private_key }}"
+      api_key_id: "{{ intersight_api_key_id }}"
+      api_uri: "{{ api_uri | default(omit) }}"
+      validate_certs: "{{ validate_certs | default(omit) }}"
+      state: "{{ state | default(omit) }}"
+
+  cisco.intersight.intersight_rest_api:
+      <<: *api_info_san-b
+      resource_path: /vnic/FcNetworkPolicies
+      query_params:
+         $filter: "Name eq '{{ name_of_fc_network_policy_san_b }}'"
+
+- name: "Delete Fibre Channel QoS Policy"
+  vars:
+    api_info: &api_info_fc_qos
+      api_private_key: "{{ intersight_api_private_key }}"
+      api_key_id: "{{ intersight_api_key_id }}"
+      api_uri: "{{ api_uri | default(omit) }}"
+      validate_certs: "{{ validate_certs | default(omit) }}"
+      state: "{{ state | default(omit) }}"
+
+  cisco.intersight.intersight_rest_api:
+      <<: *api_info_fc_qos
+      resource_path: /vnic/FcQosPolicies
+      query_params:
+         $filter: "Name eq '{{ name_of_fc_qos_policy }}'"
+
+
+
+
+

@@ -1,0 +1,23 @@
+---
+all:
+  hosts:
+    dummy:
+  vars:
+    api_private_key: ../bootcamp_org_pvk.pem
+    api_key_id: "{{ lookup('file', '../bootcamp_org_apikey.id') }}"
+    api_uri: https://intersight.com/api/v1
+    # 
+    # Intersight Organization Name. Please make sure it already exists.
+    organization_name: BootCamp
+    organization_description: "Org for remote clients tests (typically non-Cisco)"
+    org_name: "{{ organization_name }}"
+    # LAB3 Vars
+    group_prefix: g00
+    ntp_policy_name: "{{ group_prefix }}-ntppolicylab3"
+    ntp_policy_description: "LAB3 ntp policy"
+    ntp_policy_srv_lst: 
+      - ch.pool.ntp.org
+      - time.pool.org
+
+
+    

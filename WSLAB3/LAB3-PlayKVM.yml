@@ -1,0 +1,41 @@
+---
+- name: LAB3 Create KVM Policy via REST
+  hosts: localhost
+  gather_facts: false
+  vars:
+    intersight_api_login_info: &intersight_api_login_info
+      api_private_key: "{{ api_private_key }}"
+      api_key_id: "{{ api_key_id }}"
+      api_uri: "{{ api_uri | default(omit) }}"
+      validate_certs: "{{ intersight_validate_certs | default(omit) }}"
+  tasks:
+    - name: Query for an existing Organization and return Moid
+      cisco.intersight.intersight_rest_api:
+        <<: *intersight_api_login_info
+        resource_path: /organization/Organizations
+        query_params:
+          $filter: "Name eq '{{ organization_name }}'"
+      register: organization_response
+      run_once: true
+
+    - name: Moid for Organization
+      ansible.builtin.set_fact:
+        organization_moid: "{{ organization_response.api_response.Moid }}"
+      run_once: true
+      delegate_to: local_host
+      
+    - name: Print status of 'Query Organization' policy
+      ansible.builtin.debug:
+        msg: "Queried Organization '{{ organization_name }}' with Moid: '{{ organization_moid }}'"
+
+    - name: Configure KVM Policy
+      cisco.intersight.intersight_rest_api:
+        #FILL API STUFF HERE
+        resource_path: #FILL IN
+        query_params:
+          $filter: #FILL IN
+        api_body: {
+          #FILL IN WITH API BODY RELEVANT
+          #FIELDS AND INVENTORY VARIABLES
+        } 
+        state: present

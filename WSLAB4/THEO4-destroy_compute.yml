@@ -1,0 +1,11 @@
+---
+- name: destroy Cisco UCS server template
+  # hosts: localhost
+  hosts: servertemplate_esx
+  connection: local
+  gather_facts: false
+  vars:
+    state: "absent"
+  roles:
+    - name: destroy_server_profile_template
+
