@@ -20,6 +20,15 @@ Before using this collection, you need to install it with the Ansible Galaxy com
 ```
 ansible-galaxy collection install cisco.intersight
 ```
+Check its version:
+```
+ansible-galaxy collection list cisco.intersight
+```
+Update it if not latest:
+```
+ansible-galaxy collection install cisco.intersight --upgrade
+```
+
 
 You can also include it in a requirements.yml file and install it with ansible-galaxy collection install -r requirements.yml, using the format:
 
