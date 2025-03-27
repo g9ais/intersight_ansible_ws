@@ -36,3 +36,9 @@ You can also include it in a requirements.yml file and install it with ansible-g
 collections:
   - name: cisco.intersight
 ```
+
+Then create files to store both API key and API private key, once they are generated from Intersight
+```
+touch bootcamp_org_pvk.pem && touch  bootcamp_org_apikey.id
+```
+Then copy needed info on these files.
