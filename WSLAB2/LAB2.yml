@@ -9,11 +9,11 @@
         api_key_id: "{{ api_key_id }}"
         api_uri: "{{ api_uri }}"
         organization: "{{org_name}}"
-        name: g00-ntp.policy
+        name: g00-ntp.policy #modify name to your group
         description: NTP policy for lab use-modified
         tags:
-          - Key: Site
-            Value: RCDN
+          - Key: BOOTCAMP
+            Value: g00 #modify to your group
         ntp_servers:
           - ntp.esl.cisco.com
           - ch.pool.ntp.org
