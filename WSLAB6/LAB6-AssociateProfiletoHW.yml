@@ -14,11 +14,11 @@
 
   tasks:
     - name: Lookup per Profile which HW to Associate and proceed
-      when: 
+      when:
         - hw1 | length
       block:
         - name: Output action being done
-          ansible.builtin.debug: 
+          ansible.builtin.debug:
             msg: "For {{ inventory_hostname }} we have {{ hw1 }}. Deploy is {{ deployprofile1 }}"
             # This HW has Moid {{ hostvars[hw1]['server_moid'] }}.  "
 
@@ -45,7 +45,7 @@
           delegate_to: local_host
 
         - name: HW Response
-          ansible.builtin.debug: 
+          ansible.builtin.debug:
             msg:
               - "For {{ inventory_hostname }} with {{ sprofile_moid }} we have {{ hw1 }}."
               - "This HW has {{ hwinfo.api_response.Moid }} and {{ hwinfo.api_response.ObjectType }}"
@@ -120,4 +120,3 @@
               - "There was an error in processing {{ inventory_hostname }}."
               - "Please check Error below, Inventory HW assignment or Intersight connection."
               - "Task {{ ansible_failed_task.name }} failed with {{ ansible_failed_result }}."
-              
