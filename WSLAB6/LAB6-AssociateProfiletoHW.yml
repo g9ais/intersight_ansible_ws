@@ -19,7 +19,8 @@
       block:
       - name: Output action being done
         ansible.builtin.debug: 
-          msg: "For {{ inventory_hostname }} we have {{ hw1 }}. Deploy is {{ deployprofile1 }}" #This HW has Moid {{ hostvars[hw1]['server_moid'] }}.  "
+          msg: "For {{ inventory_hostname }} we have {{ hw1 }}. Deploy is {{ deployprofile1 }}"
+          # This HW has Moid {{ hostvars[hw1]['server_moid'] }}.  "
 
       - name: Get MOID of Server Profile
         cisco.intersight.intersight_rest_api:
@@ -45,7 +46,9 @@
       
       - name: HW Response
         ansible.builtin.debug: 
-          msg: "For {{ inventory_hostname }} with {{ sprofile_moid }} we have {{ hw1 }}. This HW has {{ hwinfo.api_response.Moid }} and {{ hwinfo.api_response.ObjectType }}"
+          msg: 
+            - "For {{ inventory_hostname }} with {{ sprofile_moid }} we have {{ hw1 }}."
+            - "This HW has {{ hwinfo.api_response.Moid }} and {{ hwinfo.api_response.ObjectType }}"
 
       - name: Moid and ObjectType for hw
         ansible.builtin.set_fact:
