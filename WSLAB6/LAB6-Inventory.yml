@@ -13,13 +13,13 @@ all:
         esx01:      #example service profile name derived in previous task
           hw:       #map your hw name here - imm-01-1-1
         esx02:
-          #hw: imm-01-2-5
+          #hw: imm-01-2-5   #if not assigned, nothing will happen.
         esx03:
           #hw: imm-01-2-8          
       vars:
         #Check SP Template Name generated on LAB04
-        SPTemplate: FSV-g00-esx1-Intel-5G-FC_Template
-        DeployProfile: true
+        SPTemplate: FSV-g00-esx1-Intel-5G-FC_Template #<---- modify here with data from previous task
+        DeployProfile: false
     blades:
       hosts:
         placeholderblade:
