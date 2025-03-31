@@ -10,8 +10,8 @@ all:
       hosts:
       #add hosts representing service profiles
       #choose your assigned host and add it to one profile name.
-        esx01:
-          hw: imm-01-2-4
+        esx01:      #example service profile name derived in previous task
+          hw:       #map your hw name here - imm-01-1-1
         esx02:
           #hw: imm-01-2-5
         esx03:
@@ -23,49 +23,6 @@ all:
     blades:
       hosts:
         placeholderblade:
-# imm-01-2-4
-        imm-01-2-4: 
-          serial: FCH21447VX5
-          server_moid: 6622eefc76752d30012dbe70
-          model: UCSB-B200-M5
-# / imm-01-2-4
-# imm-01-2-5
-        imm-01-2-5: 
-          serial: FLM26510D43
-          server_moid: 6622eefc76752d30012dbe00
-          model: UCSB-B200-M6
-# / imm-01-2-5
-# imm-01-2-8
-        imm-01-2-8: 
-          serial: FLM26510720
-          server_moid: 6622eeab76752d30012d80ff
-          model: UCSB-B200-M6
-# / imm-01-2-8
-# imm-01-2-6
-        imm-01-2-6: 
-          serial: FLM26510723
-          server_moid: 6622eeab76752d30012d8026
-          model: UCSB-B200-M6
-# / imm-01-2-6
-# imm-01-2-7
-        imm-01-2-7: 
-          serial: FLM26510D2M
-          server_moid: 6622eeab76752d30012d7fe1
-          model: UCSB-B200-M6
-# / imm-01-2-7
-# imm-01-2-2
-        imm-01-2-2: 
-          serial: FLM232207EM
-          server_moid: 6622eeaa76752d30012d7fa0
-          model: UCSB-B200-M5
-# / imm-01-2-2
-# imm-01-2-1
-        imm-01-2-1: 
-          serial: FCH21437P63
-          server_moid: 6622eeaa76752d30012d7f6f
-          model: UCSB-B200-M5
-# / imm-01-2-1
-
 
   vars:
     api_private_key: ../bootcamp_org_pvk.pem
