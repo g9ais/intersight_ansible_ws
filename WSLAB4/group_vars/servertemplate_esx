@@ -6,6 +6,7 @@
 # #############################################################################
 
 # Prefix added to the pool/policy/profile configuration to quickly identify items created by Ansible
+# MODIFY HERE WITH YOUR GROUP ID AND SRV FUNCTION (esx, lnx, bm, orcl)
 prefix: g00-esx1
 #
 
@@ -216,22 +217,22 @@ allowed_vlans_for_iscsi_b_vnic: "498"
 name_of_iscsi_lan_connectivity_policy: "{{ prefix }}-LAN-Connectivity-iSCSI-{{ vic_type }}_Policy"
 name_of_fc_lan_connectivity_policy: "{{ prefix }}-LAN-Connectivity-FC-{{ vic_type }}_Policy"
 
-name_of_iscsi_vnic_1: "00-MGMT-i-A"
-name_of_iscsi_vnic_2: "01-MGMT-i-B"
-name_of_iscsi_vnic_3: "02-VM-Network-i-A"
-name_of_iscsi_vnic_4: "03-VM-Network-i-B"
+name_of_iscsi_vnic_1: "{{ prefix }}-00-MGMT-i-A"
+name_of_iscsi_vnic_2: "{{ prefix }}-01-MGMT-i-B"
+name_of_iscsi_vnic_3: "{{ prefix }}-02-VM-Network-i-A"
+name_of_iscsi_vnic_4: "{{ prefix }}-03-VM-Network-i-B"
 
-name_of_fc_vnic_1: "00-MGMT-A"
-name_of_fc_vnic_2: "01-MGMT-B"
-name_of_fc_vnic_3: "02-VM-Network-A"
-name_of_fc_vnic_4: "03-VM-Network-B"
+name_of_fc_vnic_1: "{{ prefix }}-00-MGMT-A"
+name_of_fc_vnic_2: "{{ prefix }}-01-MGMT-B"
+name_of_fc_vnic_3: "{{ prefix }}-02-VM-Network-A"
+name_of_fc_vnic_4: "{{ prefix }}-03-VM-Network-B"
 
 # Additional vNICs for iSCSI boot (only configured when configure_iscsi== true)
 # 04-iSCSI-A: For iSCSI A traffic mapped to FI-A
 # 05-iSCSI-B: For iSCSI B traffic mapped to FI-B
 
-name_of_iscsi_a_vnic: "04-iSCSI-Boot-A"
-name_of_iscsi_b_vnic: "05-iSCSI-Boot-B"
+name_of_iscsi_a_vnic: "{{ prefix }}-04-iSCSI-Boot-A"
+name_of_iscsi_b_vnic: "{{ prefix }}-05-iSCSI-Boot-B"
 
 
 # Boot mode for server. Either put Uefi or Legacy
@@ -327,5 +328,5 @@ name_of_iscsi_b_boot_policy: "{{ prefix }}-iSCSI-B-Boot-Order_Policy"
 
 # ------------------------ Server Profile Template ----------------------------------
 
-name_of_iscsi_SPT: "FSV-{{ prefix }}-{{ server_cpu_type }}-{{ vic_type }}-iSCSI_Template"
-name_of_fc_SPT: "FSV-{{ prefix }}-{{ server_cpu_type }}-{{ vic_type }}-FC_Template"
+name_of_iscsi_SPT: "BC-{{ prefix }}-{{ server_cpu_type }}-{{ vic_type }}-iSCSI_Template"
+name_of_fc_SPT: "BC-{{ prefix }}-{{ server_cpu_type }}-{{ vic_type }}-FC_Template"
