@@ -241,17 +241,17 @@ boot_mode: "Uefi"
 enable_uefi_secureboot: "true"
 
 # Boot LUN ID on Storage
-lun_id: 1
+lun_id: 0
 
 # ------------------------- FC Configurations ------------------------------
 #
 # SAN connectivity Policy
 name_of_san_connectivity_policy: "{{ prefix }}-SAN-Connectivity-{{ vic_type }}_Policy"
-name_of_vhba_a: "vHBA-A"
-name_of_vhba_b: "vHBA-B"
+name_of_vhba_a: "{{ prefix }}-vHBA-A"
+name_of_vhba_b: "{{ prefix }}-vHBA-B"
 # Optional FC-NVMe Adapter Configuration
-name_of_nvme_vhba_a: "vHBA-NVMe-A"
-name_of_nvme_vhba_b: "vHBA-NVMe-B"
+name_of_nvme_vhba_a: "{{ prefix }}-vHBA-NVMe-A"
+name_of_nvme_vhba_b: "{{ prefix }}-vHBA-NVMe-B"
 
 # Fibre Channel QoS Policy
 name_of_fc_qos_policy: "{{ prefix }}-FC-QoS_Policy"
