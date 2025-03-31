@@ -43,7 +43,7 @@
               $filter: "Name eq '{{ hw1 }}'"
           register: hwinfo
           delegate_to: local_host
-          
+
         - name: HW Response
           ansible.builtin.debug: 
             msg:
@@ -120,3 +120,4 @@
               - "There was an error in processing {{ inventory_hostname }}."
               - "Please check Error below, Inventory HW assignment or Intersight connection."
               - "Task {{ ansible_failed_task.name }} failed with {{ ansible_failed_result }}."
+              
