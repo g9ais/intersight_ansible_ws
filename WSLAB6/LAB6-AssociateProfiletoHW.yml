@@ -18,7 +18,8 @@
         - hw1 | length > 0
       block:
       - name: Output action being done
-        ansible.builtin.debug: msg="For {{ inventory_hostname }} we have {{ hw1 }}. Deploy is {{ deployprofile1 }}" #This HW has Moid {{ hostvars[hw1]['server_moid'] }}.  "
+        ansible.builtin.debug: 
+          msg: "For {{ inventory_hostname }} we have {{ hw1 }}. Deploy is {{ deployprofile1 }}" #This HW has Moid {{ hostvars[hw1]['server_moid'] }}.  "
 
       - name: Get MOID of Server Profile
         cisco.intersight.intersight_rest_api:
@@ -43,7 +44,8 @@
         delegate_to: local_host
       
       - name: HW Response
-        ansible.builtin.debug: msg="For {{ inventory_hostname }} with {{ sprofile_moid }} we have {{ hw1 }}. This HW has {{ hwinfo.api_response.Moid }} and {{ hwinfo.api_response.ObjectType }}"
+        ansible.builtin.debug: 
+          msg: "For {{ inventory_hostname }} with {{ sprofile_moid }} we have {{ hw1 }}. This HW has {{ hwinfo.api_response.Moid }} and {{ hwinfo.api_response.ObjectType }}"
 
       - name: Moid and ObjectType for hw
         ansible.builtin.set_fact:
@@ -62,7 +64,7 @@
               "ServerPool": null,
               "ServerPreAssignBySerial": "",
               "ServerPreAssignBySlot": null
-              }   
+            }   
           }
           state: present
       # then deploy
@@ -102,9 +104,9 @@
 
       - name: Print final workflow status
         ansible.builtin.assert:
-          that: 
+          that:
             - ( status.api_response.ConfigContext.ConfigState == 'OK' ) or ( status.api_response.ConfigContext.ConfigState == 'Associated' )
-          fail_msg: "Final workflow status for {{ inventory_hostname }}: {{ status.api_response.ConfigContext.ConfigState }}. Please check corresponding intersight tasks."
+          fail_msg: "Final workflow status for {{ inventory_hostname }}: {{ status.api_response.ConfigContext.ConfigState }}. Check intersight tasks."
           success_msg: "Profile {{ inventory_hostname }} successfully deployed into {{ hw1 }}"
         when: deployprofile1 == true
 
@@ -115,5 +117,3 @@
               - "There was an error in processing {{ inventory_hostname }}."
               - "Please check Error below, Inventory HW assignment or Intersight connection."
               - "Task {{ ansible_failed_task.name }} failed with {{ ansible_failed_result }}."
-              
-      
