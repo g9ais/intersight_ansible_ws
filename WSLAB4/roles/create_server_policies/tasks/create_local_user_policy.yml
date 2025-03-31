@@ -29,7 +29,7 @@
         role: admin
         password: "{{ password_for_local_user }}"
     organization: "{{ org_name }}"
-    state: present
+    #state: present
   register: local_user_policy
   run_once: true
   
