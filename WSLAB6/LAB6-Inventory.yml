@@ -19,7 +19,7 @@ all:
       vars:
         #Check SP Template Name generated on LAB04
         SPTemplate: FSV-g00-esx1-Intel-5G-FC_Template #<---- modify here with data from previous task
-        DeployProfile: false
+        deployprofile: false
     blades:
       hosts:
         placeholderblade:

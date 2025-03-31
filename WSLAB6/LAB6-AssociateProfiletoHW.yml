@@ -5,7 +5,7 @@
   gather_facts: false
   vars:
     hw1: "{{ hw | default('')}}"
-    DeployProfile1: "{{ DeployProfile | default(False) }}"
+    deployprofile1: "{{ deployprofile | default(False) }}"
     intersight_api_login_info: &intersight_api_login_info
       api_private_key: "{{ api_private_key }}"
       api_key_id: "{{ api_key_id }}"
@@ -18,7 +18,7 @@
         - hw1 | length > 0
       block:
       - name: Output action being done
-        ansible.builtin.debug: msg="For {{inventory_hostname}} we have {{ hw1 }}. Deploy is {{ DeployProfile1 }}" #This HW has Moid {{ hostvars[hw1]['server_moid'] }}.  "
+        ansible.builtin.debug: msg="For {{ inventory_hostname }} we have {{ hw1 }}. Deploy is {{ deployprofile1 }}" #This HW has Moid {{ hostvars[hw1]['server_moid'] }}.  "
 
       - name: Get MOID of Server Profile
         cisco.intersight.intersight_rest_api:
@@ -28,7 +28,6 @@
             $filter: "Name eq '{{ inventory_hostname }}'"
         register: serverprofile
         delegate_to: local_host
-        
 
       - name: Moid for serverprofile
         ansible.builtin.set_fact:
@@ -44,37 +43,35 @@
         delegate_to: local_host
       
       - name: HW Response
-        ansible.builtin.debug: msg="For {{inventory_hostname}} with {{ sprofile_moid }} we have {{ hw1 }}. This HW has {{ hwinfo.api_response.Moid }} and {{ hwinfo.api_response.ObjectType }}"
+        ansible.builtin.debug: msg="For {{ inventory_hostname }} with {{ sprofile_moid }} we have {{ hw1 }}. This HW has {{ hwinfo.api_response.Moid }} and {{ hwinfo.api_response.ObjectType }}"
 
       - name: Moid and ObjectType for hw
         ansible.builtin.set_fact:
           hw_moid: "{{ hwinfo.api_response.Moid }}"
           hw_objtype: "{{ hwinfo.api_response.ObjectType }}"
-      
+
       - name: Assign HW Moid to Server
         cisco.intersight.intersight_rest_api:
           <<: *intersight_api_login_info
-          resource_path: /server/Profiles/{{sprofile_moid}}
+          resource_path: /server/Profiles/{{ sprofile_moid }}
           api_body: {
-            "AssignedServer":
-            {
-            "Moid": "{{hw_moid}}",
-            "ObjectType": "{{hw_objtype}}",
-            "ServerAssignmentMode": "Static",
-            "ServerPool": null,
-            "ServerPreAssignBySerial": "",
-            "ServerPreAssignBySlot": null
-            }  
+            "AssignedServer": {
+              "Moid": "{{ hw_moid }}",
+              "ObjectType": "{{ hw_objtype }}",
+              "ServerAssignmentMode": "Static",
+              "ServerPool": null,
+              "ServerPreAssignBySerial": "",
+              "ServerPreAssignBySlot": null
+              }   
           }
           state: present
       # then deploy
       - name: Deploy Server Profile
         cisco.intersight.intersight_rest_api:
           <<: *intersight_api_login_info
-          resource_path: /server/Profiles/{{sprofile_moid}}
+          resource_path: /server/Profiles/{{ sprofile_moid }}
           api_body: {
-            "ScheduledActions":
-            [
+            "ScheduledActions": [
               {
                 "Action":"Deploy",
                 "ProceedOnReboot":false
@@ -85,11 +82,10 @@
               }
             ]
           }
-
           state: present
         register: result_deploy
-        when: DeployProfile1 is true
-      
+        when: deployprofile1 is true
+
       - name: Deploy result
         cisco.intersight.intersight_rest_api:
           <<: *intersight_api_login_info
@@ -102,19 +98,20 @@
         retries: 30
         delay: 60
         ignore_errors: true
-        when: DeployProfile1 is true
+        when: deployprofile1 is true
+
       - name: Print final workflow status
         ansible.builtin.assert:
           that: 
-            - ( status.api_response.ConfigContext.ConfigState == 'OK' ) or (status.api_response.ConfigContext.ConfigState == 'Associated')
+            - ( status.api_response.ConfigContext.ConfigState == 'OK' ) or ( status.api_response.ConfigContext.ConfigState == 'Associated' )
           fail_msg: "Final workflow status for {{ inventory_hostname }}: {{ status.api_response.ConfigContext.ConfigState }}. Please check corresponding intersight tasks."
-          success_msg: "Profile {{inventory_hostname}} successfully deployed into {{hw1}}"
-        when: DeployProfile1 == true
+          success_msg: "Profile {{ inventory_hostname }} successfully deployed into {{ hw1 }}"
+        when: deployprofile1 == true
 
       rescue:
-       - name: Error detected
-         ansible.builtin.debug:
-           msg:
+        - name: Error detected
+          ansible.builtin.debug:
+            msg:
               - "There was an error in processing {{ inventory_hostname }}."
               - "Please check Error below, Inventory HW assignment or Intersight connection."
               - "Task {{ ansible_failed_task.name }} failed with {{ ansible_failed_result }}."
