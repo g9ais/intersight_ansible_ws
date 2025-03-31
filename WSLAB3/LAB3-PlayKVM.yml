@@ -30,12 +30,14 @@
 
     - name: Configure KVM Policy
       cisco.intersight.intersight_rest_api:
-        #FILL API STUFF HERE
-        resource_path: #FILL IN
+               #---FILL API LOGIN INFO ANCHOR HERE
+        resource_path: #FILL IN, see hint
         query_params:
           $filter: #FILL IN
         api_body: {
           #FILL IN WITH API BODY RELEVANT
           #FIELDS AND INVENTORY VARIABLES
+          #CHECK LAB3-KVM-API-Body.json
+          #BEWARE OF {[,]}
         } 
         state: present

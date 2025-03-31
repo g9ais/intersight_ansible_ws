@@ -11,7 +11,8 @@ all:
     organization_name: BootCamp
     organization_description: "Org for remote clients tests (typically non-Cisco)"
     # LAB3 Vars
-    group_prefix: #YOUR GROUP
+    group_prefix:        #<---YOUR GROUP
+    #ADD VARIABLES AS NEEDED BELOW - policy name, description...
 
 
     
