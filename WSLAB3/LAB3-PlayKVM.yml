@@ -30,7 +30,7 @@
 
     - name: Configure KVM Policy
       cisco.intersight.intersight_rest_api:
-        <<: *intersight_api_login_info       
+        <<: *intersight_api_login_info
         resource_path: /kvm/Policies
         query_params:
           $filter: "Name eq '{{ XXXXXXXXXXXXX }}'" # FILL IN WITH your_variable_name
@@ -41,4 +41,3 @@
           # BEWARE OF {[,]}
         }
         state: present
-        
