@@ -16,12 +16,10 @@
         query_params:
           $filter: "Name eq '{{ organization_name }}'"
       register: organization_response
-      run_once: true
 
     - name: Moid for Organization
       ansible.builtin.set_fact:
         organization_moid: "{{ organization_response.api_response.Moid }}"
-      run_once: true
       delegate_to: local_host
 
     - name: Print status of 'Query Organization' policy
