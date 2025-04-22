@@ -3,7 +3,7 @@
   "ClassId": "ntp.Policy",
   "Description": "",
   "Enabled": true,
-  "Name": "lab1example.ntp.org", //modify name, do not forget your group ID!
+  "Name": "lab1example.ntp.org", # modify name, do not forget your group ID!
   "NtpServers": [
     "pool.ntp.org"
   ],
