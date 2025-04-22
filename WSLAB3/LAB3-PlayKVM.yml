@@ -23,7 +23,7 @@
         organization_moid: "{{ organization_response.api_response.Moid }}"
       run_once: true
       delegate_to: local_host
-      
+
     - name: Print status of 'Query Organization' policy
       ansible.builtin.debug:
         msg: "Queried Organization '{{ organization_name }}' with Moid: '{{ organization_moid }}'"
@@ -39,5 +39,6 @@
           # FIELDS AND INVENTORY VARIABLES
           # CHECK LAB3-KVM-API-Body.json
           # BEWARE OF {[,]}
-        } 
+        }
         state: present
+        
