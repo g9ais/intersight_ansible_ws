@@ -11,10 +11,9 @@ all:
     organization_name: BootCamp
     organization_description: "Org for remote clients tests (typically non-Cisco)"
     # LAB3 Vars
-    group_prefix:  XXXX      #<---YOUR GROUP
-    # ADD VARIABLES AS NEEDED BELOW
-    # your_variable_name: "{{ group_prefix }}-yourPolicyName"
-    # your_variable_description: "yourPolicyDescription"
+    group_prefix: g00 # YOUR GROUP
+    kvm_policy_name: "{{ group_prefix }}-kvmpollab3"
+    kvm_policy_description: "{{ group_prefix }} LAB3 kvm policy"
 
 
     

@@ -1,0 +1,43 @@
+{
+    "ObjectType": "ntp.Policy.List",
+    "Results": [
+      {
+        "AccountMoid": "59a80bbbf11aa10001cf7413",
+        "Ancestors": [],
+        "AuthenticatedNtpServers": [],
+        "ClassId": "ntp.Policy",
+        "CreateTime": "2025-04-15T10:10:47.657Z",
+        "Description": "",
+        "DomainGroupMoid": "5b25418b7a7662743465cf1f",
+        "Enabled": true,
+        "ModTime": "2025-04-15T10:10:47.658Z",
+        "Moid": "67fe30a7627572300140a714",
+        "Name": "lab1.ntp.org",
+        "NtpServers": [
+          "pool.ntp.org"
+        ],
+        "ObjectType": "ntp.Policy",
+        "Organization": {
+          "ClassId": "mo.MoRef",
+          "Moid": "65e21ad56972653301b39354",
+          "ObjectType": "organization.Organization",
+          "link": "https://us-east-1.intersight.com/api/v1/organization/Organizations/65e21ad56972653301b39354"
+        },
+        "Owners": [
+          "59a80bbbf11aa10001cf7413"
+        ],
+        "PermissionResources": [
+          {
+            "ClassId": "mo.MoRef",
+            "Moid": "65e21ad56972653301b39354",
+            "ObjectType": "organization.Organization",
+            "link": "https://us-east-1.intersight.com/api/v1/organization/Organizations/65e21ad56972653301b39354"
+          }
+        ],
+        "Profiles": [],
+        "SharedScope": "",
+        "Tags": [],
+        "Timezone": "Europe/Zurich"
+      }
+    ]
+  }

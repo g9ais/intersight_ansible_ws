@@ -1,20 +1,20 @@
 {
   "ClassId": "kvm.Policy",
-  "Description": "kvm policy",
+  "Description": "kvm policy",    # convert into variable "{{ your_variable_description }}"
   "EnableLocalServerVideo": true,
   "EnableVideoEncryption": true,
   "Enabled": true,
   "MaximumSessions": 3,
-  "Name": "bootcamp-kvm.def",
+  "Name": "bootcamp-kvm.def",   # convert into variable "{{ your_variable_name }}"
   "ObjectType": "kvm.Policy",
   "Organization": {
-    "Moid": "65e21ad56972653301b39354"
+    "Moid": "65e21ad56972653301b39354"      # convert into context variable "{{ organization_moid }}"
   },
   "Profiles": [],
   "RemotePort": 2069,
   "Tags": [            
     {"Key": "Provisioned by:", "Value": "Intersight-Ansible"},
-    {"Key": "BOOTCAMP", "Value": "g00"}
+    {"Key": "BOOTCAMP", "Value": "XXXXXXXX"}     # convert Value into variable "{{ group_prefix }}"
   ],
   "TunneledKvmEnabled": true
 } 

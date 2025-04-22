@@ -10,10 +10,5 @@ all:
     # Intersight Organization Name. Please make sure it already exists.
     organization_name: BootCamp
     organization_description: "Org for remote clients tests (typically non-Cisco)"
-    # LAB3 Vars
-    group_prefix: g00 #YOUR GROUP
-    kvm_policy_name: "{{ group_prefix }}-kvmpollab3"
-    kvm_policy_description: "{{ group_prefix }} LAB3 kvm policy"
-
-
+    org_name: "{{ organization_name }}"
     

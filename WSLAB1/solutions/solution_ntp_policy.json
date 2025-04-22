@@ -1,0 +1,21 @@
+{
+  "AuthenticatedNtpServers": [],
+  "ClassId": "ntp.Policy",
+  "Description": "",
+  "Enabled": true,
+  "Name": "lab1example.ntp.org", //modify name, do not forget your group ID!
+  "NtpServers": [
+    "pool.ntp.org"
+  ],
+  "ObjectType": "ntp.Policy",
+  "Organization": {
+    "ClassId": "mo.MoRef",
+    "Moid": "65e21ad56972653301b39354",
+    "ObjectType": "organization.Organization",
+    "link": "https://us-east-1.intersight.com/api/v1/organization/Organizations/65e21ad56972653301b39354"
+  },
+  "Profiles": [],
+  "SharedScope": "",
+  "Tags": [],
+  "Timezone": "Europe/Zurich"
+}

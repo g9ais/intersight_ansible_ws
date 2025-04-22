@@ -8,13 +8,11 @@ all:
         dummy:
     serverprofile_esx:
       hosts:
-      #add hosts representing service profiles
-        esx01:
-        esx02:
-        esx03:
+      # add hosts representing service profiles. Beware of indentation
+        XXXXX:
       vars:
         #Check SP Template Name generated on LAB04
-        SPTemplate: FSV-g00-esx1-Intel-5G-FC_Template
+        SPTemplate: XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 
   vars:
     api_private_key: ../bootcamp_org_pvk.pem
@@ -29,7 +27,7 @@ all:
     organization_description: "Org for remote clients tests (typically non-Cisco)"
     org_name: "{{ organization_name }}"
     #do not forget to add your group prefix
-    group_prefix: g00
+    group_prefix: XXXXXX
 
 
 

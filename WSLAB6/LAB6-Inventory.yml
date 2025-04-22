@@ -10,7 +10,7 @@ all:
       hosts:
       #add hosts representing service profiles
       #choose your assigned host and add it to one profile name.
-        esx01:      #example service profile name derived in previous task
+        XXXX:      #example service profile name derived in previous task
           hw:       #map your hw name here - imm-01-1-1
         esx02:
           #hw: imm-01-2-5   #if not assigned, nothing will happen.
@@ -18,7 +18,7 @@ all:
           #hw: imm-01-2-8          
       vars:
         #Check SP Template Name generated on LAB04
-        SPTemplate: FSV-g00-esx1-Intel-5G-FC_Template #<---- modify here with data from previous task
+        SPTemplate: XXXXXXXXXXXXXXXXXXXXXX  #<---- modify here with data from previous task
         deployprofile: false
     blades:
       hosts:
@@ -37,4 +37,4 @@ all:
     organization_description: "Org for remote clients tests (typically non-Cisco)"
     org_name: "{{ organization_name }}"
     #do not forget to add your group prefix
-    group_prefix: g00
+    group_prefix: XXXXXXXXXXXXXX
