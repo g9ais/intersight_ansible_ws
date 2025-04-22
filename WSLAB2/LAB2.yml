@@ -19,3 +19,4 @@
           - ch.pool.ntp.org
         timezone: Europe/Zurich
         state: present  # toggle to create or delete
+        
