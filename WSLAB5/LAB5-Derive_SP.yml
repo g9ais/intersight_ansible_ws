@@ -48,23 +48,23 @@
           $filter: "Name eq '{{ inventory_hostname }}'"
         api_body: {
           "Sources": [
-              {
-                  "Moid": "{{sptemplate_moid}}",
-                  "ObjectType": "server.ProfileTemplate"
-              }
+            {
+              "Moid": "{{ sptemplate_moid }}",
+              "ObjectType": "server.ProfileTemplate"
+            }
           ],
           "Targets": [
-              {
-                  "Description": "{{ inventory_hostname }} server profile derived from {{ SPTemplate }}",
-                  "Name": "{{ inventory_hostname }}",
-                  "ObjectType": "server.Profile",
-                  "Organization": {
-                      "Moid": "{{ organization_moid }}",
-                  },
-                  "Tags": [
-                    {"Key": "Provisioned by:", "Value": "Intersight-Ansible"},
-                    {"Key": "Project:", "Value": "Workshop-{{ group_prefix }}"}
-                    ],           
-              }
-            ]
+            {
+              "Description": "{{ inventory_hostname }} server profile derived from {{ SPTemplate }}",
+              "Name": "{{ inventory_hostname }}",
+              "ObjectType": "server.Profile",
+              "Organization": {
+                "Moid": "{{ organization_moid }}",
+              },
+              "Tags": [
+                {"Key": "Provisioned by:", "Value": "Intersight-Ansible"},
+                {"Key": "Project:", "Value": "Workshop-{{ group_prefix }}"}
+              ],
+            }
+          ]
         }
